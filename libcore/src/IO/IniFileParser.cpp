@@ -55,6 +55,8 @@ private:
 
     bool ParseVelocityModel(TiXmlElement * xVelocity, TiXmlElement * xMain);
 
+    bool ParseNewModel(TiXmlElement * xVelocity, TiXmlElement * xMain);
+
     void ParseAgentParameters(TiXmlElement * operativModel, TiXmlNode * agentDistri);
 
     bool ParseRoutingStrategies(TiXmlNode * routingNode, TiXmlNode * agentDistri);
@@ -165,6 +167,15 @@ void IniFileParser::Parse(const fs::path & iniFile)
             }
             //only parsing one model
             if(!ParseVelocityModel(xModel, xMainNode)) {
+                throw std::logic_error("Error parsing Velocity model parameters.");
+            }
+            parsingModelSuccessful = true;
+            break;
+        }
+        if((_model == to_underlying(OperationalModelType::NEW_MODEL)) &&
+           (model_id == to_underlying(OperationalModelType::VELOCITY))) {
+            //only parsing one model
+            if(!ParseNewModel(xModel, xMainNode)) {
                 throw std::logic_error("Error parsing Velocity model parameters.");
             }
             parsingModelSuccessful = true;
@@ -562,6 +573,12 @@ bool IniFileParser::ParseVelocityModel(TiXmlElement * xVelocity, TiXmlElement * 
     ParseAgentParameters(xVelocity, xAgentDistri);
     _config->operationalModel = OperationalModelType::VELOCITY;
 
+    return true;
+}
+
+bool IniFileParser::ParseNewModel(TiXmlElement * xVelocity, TiXmlElement * xMainNode)
+{
+    // TODO(Mchraibi): Add your new paramters to parsing
     return true;
 }
 

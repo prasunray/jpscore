@@ -4,4 +4,4 @@
 
 #include <string>
 
-enum class OperationalModelType { GCFM = 1, VELOCITY = 3 };
+enum class OperationalModelType { GCFM = 1, VELOCITY = 3, NEW_MODEL = 4 };

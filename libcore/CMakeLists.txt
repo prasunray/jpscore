@@ -90,6 +90,8 @@ add_library(core STATIC
     src/math/GCFMModel.hpp
     src/math/Mathematics.cpp
     src/math/Mathematics.hpp
+    src/math/NewModel.cpp
+    src/math/NewModel.cpp
     src/math/OperationalModel.cpp
     src/math/OperationalModel.hpp
     src/math/VelocityModel.cpp

@@ -33,7 +33,10 @@
 #include "direction/DirectionManager.hpp"
 #include "general/Configuration.hpp"
 #include "math/GCFMModel.hpp"
+#include "math/NewModel.hpp"
 #include "math/VelocityModel.hpp"
+
+#include <memory>
 
 std::unique_ptr<OperationalModel> OperationalModel::CreateFromType(
     OperationalModelType type,
@@ -55,6 +58,10 @@ std::unique_ptr<OperationalModel> OperationalModel::CreateFromType(
         case OperationalModelType::VELOCITY:
             return std::make_unique<VelocityModel>(
                 directionManager, config.aPed, config.dPed, config.aWall, config.dWall);
+        case OperationalModelType::NEW_MODEL:
+            // TODO(Mchraibi): If your model needs additional parameters for construction,
+            // you need to pass them on from here from the configuration
+            return std::make_unique<NewModel>(directionManager);
     }
 }
 
